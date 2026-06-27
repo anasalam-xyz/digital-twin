@@ -16,10 +16,15 @@
 
 html {
   font-family: var(--font-body);
-  color: #EFF6FB;
-  background-color: #0D1B2A;
+  color: #0D1B2A;
+  background-color: #1A2E42;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
+}
+
+::selection {  
+  background-color: #2A7FAF;
+  color: #EFF6FB;
 }
 
 h1, h2, h3 {
