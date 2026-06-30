@@ -25,7 +25,7 @@ export default function Datasets() {
               <span className="font-mono text-[9px] tracking-[0.15em] uppercase text-secondary-accent border border-secondary-accent/40 bg-secondary-accent/10 px-2 py-0.5 rounded-sm">
                 Primary
               </span>
-              <span className="font-display text-lg md:text-xl font-bold tracking-wide">IMD Gridded Data</span>
+              <span className="font-display text-md md:text-xl font-bold tracking-wide">IMD Gridded Data</span>
             </div>
             <div className="font-mono text-[9px] tracking-[0.1em] text-muted-text text-right leading-loose max-sm:text-left">
               imdpune.gov.in  via imdlib<br />
@@ -46,9 +46,9 @@ export default function Datasets() {
               </thead>
               <tbody>
                 {[
-                  { var: "rain", res: "0.25° × 0.25° (~25km)", shape: "(365, 129, 135)", unit: "mm/day", cov: "2021–2022" },
-                  { var: "tmax", res: "1° × 1° (~100km)", shape: "(365, 31, 31)", unit: "°C", cov: "2021–2022" },
-                  { var: "tmin", res: "1° × 1° (~100km)", shape: "(365, 31, 31)", unit: "°C", cov: "2021–2022" },
+                  { var: "rain", res: "0.25° × 0.25° (~25km)", shape: "(365, 129, 135)", unit: "mm/day", cov: "2012–2025" },
+                  { var: "tmax", res: "1° × 1° (~100km)", shape: "(365, 31, 31)", unit: "°C", cov: "2012–2025" },
+                  { var: "tmin", res: "1° × 1° (~100km)", shape: "(365, 31, 31)", unit: "°C", cov: "2012–2025" },
                 ].map((row) => (
                   <tr key={row.var} className="border-b border-secondary-bg/60 hover:bg-primary-accent/5 transition-colors">
                     <td className="px-6 py-3 font-mono text-xs text-secondary-accent">{row.var}</td>
@@ -67,7 +67,7 @@ export default function Datasets() {
               ["Lat Range", "6.5°N – 38.5°N"],
               ["Lon Range", "66.5°E – 100°E"],
               ["Temporal Res", "Daily"],
-              ["Missing Value", "999"],
+              ["Missing Value", "99.9"],
             ].map(([label, value]) => (
               <div key={label} className="flex flex-col gap-0.5">
                 <span className="font-mono text-xs tracking-[0.15em] uppercase text-primary-accent">{label}</span>
@@ -80,11 +80,11 @@ export default function Datasets() {
         <div className="border border-primary-accent/15 rounded-md overflow-hidden">
 
           <div className="flex items-center justify-between px-6 py-4 bg-primary-bg border-b border-primary-accent/15 max-sm:flex-col max-sm:gap-2 max-sm:items-start">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center justify-center gap-3">
               <span className="font-mono text-[9px] tracking-[0.15em] uppercase text-muted-text border border-muted-text/40 bg-muted-text/10 px-2 py-0.5 rounded-sm">
                 Secondary
               </span>
-              <span className="font-display text-lg md:text-xl font-bold tracking-wide">INSAT-3R / MOSDAC</span>
+              <span className="font-display text-md md:text-xl font-bold tracking-wide">INSAT-3R / MOSDAC</span>
               <span className="font-mono text-[9px] tracking-[0.15em] uppercase text-amber-400 border border-amber-400/40 bg-amber-400/10 px-2 py-0.5 rounded-sm">
                 Pending
               </span>
@@ -108,9 +108,9 @@ export default function Datasets() {
               </thead>
               <tbody>
                 {[
+                  { product: "IMC", var: "Rainfall", shape: "", unit: "mm/day", cov: "India" },
                   { product: "LST", var: "Land Surface Temp", shape: "", unit: "°C", cov: "India" },
                   { product: "SST", var: "Sea Surface Temp", shape: "", unit: "°C", cov: "India" },
-                  { product: "IMC", var: "Rainfall", shape: "", unit: "°C", cov: "India" },
                 ].map((row) => (
                   <tr key={row.product} className="border-b border-secondary-bg/60 last:border-0 hover:bg-primary-accent/5 transition-colors">
                     <td className="px-6 py-3 font-mono text-xs text-secondary-accent">{row.product}</td>

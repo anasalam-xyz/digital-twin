@@ -12,7 +12,7 @@ const STACK = [
     group: "Frontend",
     items: [
       { icon: <SiNextdotjs />, name: "Next.js", desc: "App framework" },
-      { icon: <SiTailwindcss />, name: "Tailwind v4", desc: "Utility-first styling" },
+      { icon: <SiTailwindcss />, name: "TailwindCSS", desc: "Utility-first styling" },
       { icon: <SiTypescript />, name: "TypeScript", desc: "Development" },
     ],
   },
@@ -20,7 +20,7 @@ const STACK = [
     group: "Backend",
     items: [
       { icon: <SiPython />, name: "Python", desc: "Data & ML pipeline" },
-      { icon: <SiFastapi />, name: "API Framework", desc: "TBD — FastAPI / Node.js" },
+      { icon: <SiFastapi />, name: "FastAPI", desc: "REST api" },
     ],
   },
   {

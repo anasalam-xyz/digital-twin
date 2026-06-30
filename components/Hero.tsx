@@ -64,36 +64,36 @@ export default function Hero() {
       </div>
 
 
-      <div className="md:hidden relative flex flex-col justify-between items-center px-6 py-8 min-h-[90vh] text-center
-  bg-[url('@/public/assets/hero-mobile.png')] bg-cover bg-center bg-no-repeat">
-  
-  <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/70 z-0" />
-  
-  <div className="relative z-10 flex flex-col justify-between items-center min-h-screen py-12 gap-4">
-    
-    <div className="text-center">
-      <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-secondary-accent mb-3">
-        ISRO  BAH 2026  PS-5
-      </p>
-      <h1 className="font-display text-4xl font-bold tracking-wide leading-tight text-primary-text">
-        India&apos;s Digital <span className="text-secondary-accent">Twin</span>
-      </h1>
-    </div>
+      <div className="md:hidden relative flex flex-col justify-between items-center px-6 py-8 h-screen text-center
+		  bg-[url('@/public/assets/hero-mobile.png')] bg-cover bg-center bg-no-repeat">
+		  
+		  <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/70 z-0" />
+		  
+		  <div className="relative z-10 flex flex-col justify-between items-center min-h-screen py-12 gap-4">
+			
+			<div className="text-center">
+			  <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-secondary-accent mb-3">
+				ISRO  BAH 2026  PS-5
+			  </p>
+			  <h1 className="font-display text-4xl font-bold tracking-wide leading-tight text-primary-text">
+				India&apos;s Digital <span className="text-secondary-accent">Twin</span>
+			  </h1>
+			</div>
 
-    <div className="flex-1" />
+			<div className="flex-1" />
 
-    <div className="flex flex-col items-center gap-4">
-      <p className="text-xs text-muted-text font-light leading-relaxed max-w-[280px]">
-        AI-powered climate simulation built on IMD data, INSAT-3R satellite products, and ConvLSTM deep learning.
-      </p>
-      <HeroButtons />
-      <p className="font-mono text-[9px] tracking-[0.14em] uppercase text-muted-text/50">
-        Pilot Region · Delhi NCR
-      </p>
-    </div>
+			<div className="flex flex-col items-center gap-4">
+			  <p className="text-xs text-secondary-text shadow-lg font-light leading-relaxed max-w-[280px]">
+				AI-powered climate simulation built on IMD data, INSAT-3R satellite products, and ConvLSTM deep learning.
+			  </p>
+			  <HeroButtons />
+			  <p className="font-mono text-[9px] tracking-[0.14em] uppercase text-muted-text/50">
+				Pilot Region · Delhi NCR
+			  </p>
+			</div>
 
-  </div>
-</div>
+		  </div>
+		</div>
     </section>
   );
 }

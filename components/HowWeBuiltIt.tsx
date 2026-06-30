@@ -8,7 +8,7 @@ const STEPS = [
         IMD gridded datasets are fetched directly using <strong className="text-secondary-text font-normal">imdlib</strong> — a
         Python library that downloads binary <strong className="text-secondary-text font-normal">.GRD files</strong> for
         rainfall, max temperature, and min temperature. Each file encodes a 3D grid of
-        [time, latitude, longitude] at daily resolution, covering all of India from 2021 to 2022.
+        [time, latitude, longitude] at daily resolution, covering all of India from 2012 to 2025.
       </>
     ),
     pills: ["imdlib", ".GRD Binary", "Historical Data"],
@@ -20,7 +20,7 @@ const STEPS = [
     description: (
       <>
         Raw binary files are parsed into <strong className="text-secondary-text font-normal">xarray Datasets</strong> with
-        named coordinates. Missing values flagged as <strong className="text-secondary-text font-normal">999.</strong> are
+        named coordinates. Missing values flagged as <strong className="text-secondary-text font-normal">99.9 </strong> are
         masked and handled. Grids are normalized, spatially aligned, and sliced to the pilot region.
         INSAT-3R NetCDF products are reprojected to match IMD&apos;s coordinate reference system.
       </>
@@ -68,7 +68,7 @@ const STEPS = [
         the interface makes complex spatial data legible at a glance.
       </>
     ),
-    pills: ["Next.js", "Interactive Map", "Time Scrubber", "Tailwind v4"],
+    pills: ["Next.js", "Leaflet", "Tailwind"],
   },
 ];
 
