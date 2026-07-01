@@ -1,144 +1,95 @@
-# India's Digital Twin
+# 🌏 AI-Powered Digital Twin of India's Climate: Interactive Dashboard
 
-**AI-Powered Digital Twin of India's Climate using India's National Data**
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?logo=vercel&logoColor=white)](https://digitaltwin-in.vercel.app/)
+[![Status: Concept Phase](https://img.shields.io/badge/Status-Phase%201%20Proof%20of%20Concept-success)](#)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green)](#)
 
-Bharatiya Antariksh Hackathon 2026 - Challenge 05
-Team **Pull_Request Pending** — Aditya, Kavya, Anas
+## 📌 Overview
 
----
+This repository hosts the **Interactive Dashboard UI** for the **AI-Powered Digital Twin of India's Climate** project. 
 
-## Overview
+The Digital Twin is designed as a hybrid, multi-branch deep learning model to forecast climate extremes and variations. Because modern AI solutions require specialized environments for data preprocessing, model training, and user interaction, this project adopts a decoupled, modular architecture:
 
-This project is a Proof-of-Concept AI-powered digital twin of India's climate, built for ISRO's Bharatiya Antariksh Hackathon 2026. It uses national datasets — IMD gridded rainfall and temperature records, and INSAT-3R satellite products, to simulate, predict, and visualize climate conditions over a pilot region.
+1. **The Data Pipeline** (hosted elsewhere) parses and standardizes official IMD gridded datasets.
+2. **The Deep Learning Model** (`ClimateDualNet`, trained and stored elsewhere) generates the forecasts.
+3. **This UI Repository** serves as the **Forecast Presentation and Visualization Layer**, allowing end-users to interactively explore the model's predictions over a geographical map.
 
-The system combines a ConvLSTM deep learning model trained on historical climate data with an interactive map dashboard, allowing users to explore both real observed conditions and AI-generated predictions, including a "what-if" scenario engine to simulate the impact of changing rainfall or temperature inputs.
+**Live UI Prototype:** [https://digitaltwin-in.vercel.app/](https://digitaltwin-in.vercel.app/)
 
-**Pilot region:** Kerala
+## 🎯 Purpose of this UI
 
-### What it does
+A predictive AI model is only as useful as its outputs are accessible. This UI was built to act as the direct user-facing forecast interface. While the underlying AI model outputs complex spatiotemporal tensors representing multi-day forecasts for rainfall and temperatures, this dashboard translates those tensors into a human-readable, map-based visual format.
 
-- Visualizes daily rainfall, maximum temperature, and minimum temperature across Delhi NCR using IMD's 0.25°–1° gridded datasets
-- Predicts next-day climate conditions using a ConvLSTM model trained on input sequences
-- Compares predicted values against real observations to validate model accuracy
-- Lets users simulate "what-if" scenarios — adjusting rainfall or temperature inputs to see how the predicted climate state responds
-- Presents all of this through an interactive, map-based dashboard
+Currently focused on the pilot region of Kerala and the southern peninsula, the interface maps out high-resolution (0.25° × 0.25°) gridded fields for:
+- 🌧 **Rainfall**
+- 🌡 **Maximum Temperature (Tmax)**
+- 🌡 **Minimum Temperature (Tmin)**
 
-### Why it matters
+## 🏗️ System Architecture
 
-India's climate, particularly monsoon rainfall and temperature extremes, is highly variable and difficult to model at fine spatial resolution using conventional methods. A digital twin built on India's own satellite and meteorological data supports climate resilience, disaster preparedness, and data-driven decision-making, in line with ISRO's vision for indigenous AI-powered climate intelligence.
+The following diagram illustrates how the Interactive UI connects with the broader Digital Twin ecosystem:
 
----
-
-## Live Links
-
-- **Dashboard:** _https://digitaltwin-in.vercel.app/_
-- **Presentation:** _https://digitaltwin-in.vercel.app/presentation.pdf_
-- **GitHub Repository:** _https://github.com/anasalam-xyz/digital-twin_
-
----
-
-## Technical Details
-
-### Architecture
-
-```
-Data Sources (IMD, INSAT-3R)
-        ↓
-Preprocessing (xarray, scipy, pandas)
-        ↓
-ConvLSTM Model (PyTorch)
-        ↓
-Prediction API
-        ↓
-Frontend Dashboard (Next.js, TailwindCSS)
-```
-
-### Datasets
-
-**IMD Gridded Data (Primary)**
-| Variable | Resolution | Grid Shape | Unit |
-|---|---|---|---|---|
-| Rainfall (`rain`) | 0.25° × 0.25° (~25km) | 129 × 135 | mm/day | 
-| Max Temperature (`tmax`) | 1° × 1° (~100km) | 31 × 31 | °C |
-| Min Temperature (`tmin`) | 1° × 1° (~100km) | 31 × 31 | °C |
-
-- Source: [imdpune.gov.in](https://www.imdpune.gov.in/)
-- Accessed via the `imdlib` Python library, parsed from `.GRD` binary format into `xarray` Datasets
-- Missing values flagged as `99.9` are masked during preprocessing
-- Spatial coverage: 6.5°N–38.5°N, 66.5°E–100°E
-
-**INSAT-3R / MOSDAC (Secondary)**
-- Land Surface Temperature (`3RIMG_L2B_LST`), Sea Surface Temperature (`3RIMG_L2B_SST`) and Rainfall (`3RIMG_L2B_IMC`) products
-- Source: [mosdac.gov.in](https://www.mosdac.gov.in/)
-- Format: NetCDF
-- Status: awaiting access verification
-
-### Machine Learning
-
-- **Model:** ConvLSTM (Convolutional LSTM)
-- **Input:** Sequences of spatial rainfall/temperature fields
-- **Output:** Next-day prediction for rainfall and temperature, per grid cell
-- **Framework:** PyTorch
-
-### Frontend
-
-- **Framework:** Next.js (App Router)
-- **Styling:** Tailwind CSS v4
-- **Language:** TypeScript
-- **Map rendering:** Leaflet (`react-leaflet`)
-
-### Dashboard Features
-
-- **Variable toggle** — switch between Rainfall, Max Temp, Min Temp
-- **Overlay modes** — Actual (observed IMD data), Predicted (model output), Anomaly (predicted − actual deviation)
-- **Time scrubber** — navigate across the full dataset
-- **What-if scenario engine** — adjust rainfall/temperature deltas and simulate the model's predicted response
-- **Grid point inspection** — click any cell to view exact coordinates, actual vs. predicted values, and 7-day history
-
----
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18+
-
-### Setup
-
-```bash
-npm install
-npm run dev
+```mermaid
+graph TD
+    subgraph "Frontend: Interactive Dashboard (This Repo)"
+        UI[Web UI Application]
+        Map[Map-based Visualization Interface]
+        Forecast[Real-time Forecast Rendering]
+        Scenario[What-If Scenario Module]
+        
+        UI --> Map
+        UI -.->|Next Phase| Forecast
+        UI -.->|Next Phase| Scenario
+    end
+    
+    subgraph "Backend: AI Model & Data Pipeline (External)"
+        Data[(IMD Gridded Datasets)]
+        Pipeline[Data Preprocessing Pipeline]
+        Model[(Trained AI Model: ClimateDualNet)]
+        Storage[(Model Weights & Outputs)]
+        
+        Data -->|Raw .GRD Files| Pipeline
+        Pipeline -->|.npz Tensors| Model
+        Model -->|Predictions| Storage
+    end
+    
+    Storage == "API / Data Fetching" === UI
+    
+    style UI fill:#2196F3,stroke:#333,stroke-width:2px,color:#fff
+    style Model fill:#9C27B0,stroke:#333,stroke-width:2px,color:#fff
+    style Data fill:#4CAF50,stroke:#333,stroke-width:2px,color:#fff
 ```
 
-Visit `http://localhost:3000`
+## 🚀 Current Implementation Status (Phase 1)
 
-### Build
+**Phase 1 (Completed)** focused on proving the feasibility of the core AI architecture (`ClimateDualNet`) and establishing the data pipeline. 
 
-```bash
-npm run build
-npm run start
-```
+**UI Status in Phase 1:**
+- ✅ Developed and deployed the UI prototype to Vercel.
+- ✅ Implemented the map-based interface for visualizing gridded rainfall and temperature fields across the Kerala pilot domain.
+- ✅ Established the decoupled architecture, ensuring the UI can operate independently from the heavy model-training infrastructure.
 
-## Project Status
+## 🔮 Future Work (Phase 2 Roadmap)
 
-This is an active Proof-of-Concept built within hackathon constraints. Current scope is limited to the Delhi NCR pilot region with IMD data; INSAT-3R integration and broader national coverage are part of the scalability roadmap described in the challenge objectives.
+The next phase will heavily enhance the capabilities of this dashboard, transforming it from a visualization prototype into a fully integrated predictive tool:
 
-| Component | Status |
-|---|---|
-| IMD data pipeline | Validated |
-| INSAT-3R integration | Pending access |
-| ConvLSTM model | Trained Successfuly |
-| Dashboard (frontend) |  Functional with mock data |
-| API integration | In progress |
-| Deployment | https://digitaltwin-in.vercel.app/ |
+- **Model Integration:** Directly linking the UI to the live outputs of the Phase 2 multi-branch model (which will include physics-informed and hierarchical-trend branches).
+- **Real-Time Forecast Rendering:** Dynamic loading and animation of 7-day forecast horizons directly on the map.
+- **Explainable AI (XAI) Overlays:** Visualizing SHAP and Grad-CAM outputs to explain *why* the model is predicting specific extreme events.
+- **"What-If" Scenario Simulation:** An interactive module allowing users to tweak climate variables and instantly see the simulated impact on local weather patterns, leveraging the underlying model's fusion layer.
+
+## 🔗 Project Ecosystem Links
+
+To explore the full scope of the Digital Twin project, please refer to the following resources:
+
+| Component | Resource Link |
+|-----------|--------------|
+| **UI Dashboard (Live Prototype)** | [digitaltwin-in.vercel.app](https://digitaltwin-in.vercel.app/) |
+| **UI Source Code** | [github.com/anasalam-xyz/digital-twin](https://github.com/anasalam-xyz/digital-twin) |
+| **Data Preprocessing Pipeline** | [github.com/aditya-raj9125/Digital-Twin](https://github.com/aditya-raj9125/Digital-Twin/tree/main) |
+| **Model Training Notebook** | [Google Colab](https://colab.research.google.com/drive/1mf-kjpPhyaed0wkHWKu9GKIkK4DFwS6H?usp=sharing) |
+| **Checkpoints & Diagnostic Plots** | [Google Drive Folder](https://drive.google.com/drive/folders/1efm85dzpRnf6ufU3qKhlyTZWFP1JGwMd?usp=sharing) |
+| **Detailed Architecture Document** | [Google Docs](https://docs.google.com/document/d/1KsxmaGxhuVIss7dc9mCIEOfIbnENyrDp60bkAkGDPnI/edit?usp=sharing) |
 
 ---
-
-## Team
-
-**Pull_Request Pending**
-- Aditya
-- Kavya
-- Anas
-
-Built for the Bharatiya Antariksh Hackathon 2026, Challenge 05 — AI-Powered Digital Twin of India's Climate.
+*Developed as part of the AI-Powered Digital Twin of India's Climate Project. Demonstrating technical feasibility, transparent engineering, and actionable climate insights.*
