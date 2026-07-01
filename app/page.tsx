@@ -4,6 +4,7 @@ import Datasets from "@/components/Datasets";
 import HowWeBuiltIt from "@/components/HowWeBuiltIt";
 import TechStack from "@/components/TechStack";
 import Footer from "@/components/Footer";
+import Resources from "@/components/Resources";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <Datasets/>
       <HowWeBuiltIt/>
       <TechStack/>
+      <Resources/>
       <Footer/>
     </main>
   );

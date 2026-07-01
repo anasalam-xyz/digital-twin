@@ -1,4 +1,5 @@
-import { LayoutDashboard, Waypoints, Presentation } from "lucide-react";
+import { LayoutDashboard, Waypoints, } from "lucide-react";
+import { IoLibrary } from "react-icons/io5";
 import Link from "next/link";
 
 export default function HeroButtons() {
@@ -10,15 +11,15 @@ export default function HeroButtons() {
         <p className="text-sm font-medium tracking-wide">Go To Dashboard</p>
       </Link>
 
-      <button className="w-full px-5 py-2.5 border border-muted-text text-secondary-text hover:text-secondary-bg rounded-md inline-flex items-center gap-3 cursor-pointer group transition-all duration-300 hover:bg-secondary-text">
+      <Link href="/Presentation.pdf" target="_blank" rel="noopener noreferrer" className="w-full px-5 py-2.5 border border-muted-text text-secondary-text hover:text-secondary-bg rounded-md inline-flex items-center gap-3 cursor-pointer group transition-all duration-300 hover:bg-secondary-text">
         <Waypoints className="w-4 shrink-0 group-hover:rotate-90 transition-all duration-400" />
         <p className="text-sm font-normal tracking-wide">See Presentation</p>
-      </button>
+      </Link>
 
-      <button className="w-full px-5 py-2.5 text-muted-text rounded-full inline-flex items-center gap-3 cursor-pointer group transition-all duration-300 hover:text-secondary-accent">
-        <Presentation className="w-4 shrink-0 transition-transform duration-300 group-hover:rotate-12" />
-        <p className="text-sm font-normal tracking-wide">Our Approach</p>
-      </button>
+      <Link href="/#resources" className="w-full px-5 py-2.5 text-muted-text rounded-full inline-flex items-center gap-3 cursor-pointer group transition-all duration-300 hover:text-secondary-accent">
+        <IoLibrary className="w-4 shrink-0 transition-transform duration-300 group-hover:rotate-12" />
+        <p className="text-sm font-normal tracking-wide">Resources</p>
+      </Link>
 
     </div> 
   );

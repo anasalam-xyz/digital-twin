@@ -58,7 +58,7 @@ export default function Hero() {
       </div>
 
       <p className="absolute bottom-8 left-1/2 -translate-x-1/2 font-(family-name:--font-mono) text-[9px] tracking-[0.14em] uppercase text-[#B0BFCA] whitespace-nowrap animate-[fadeIn_2s_ease_both] max-sm:hidden">
-        Pilot Region · Delhi NCR &nbsp;·&nbsp; IMD + INSAT-3R &nbsp;·&nbsp; ConvLSTM
+        Pilot Region · Kerala &nbsp;·&nbsp; IMD + INSAT-3R &nbsp;·&nbsp; ConvLSTM
       </p>
 
       </div>
@@ -88,7 +88,7 @@ export default function Hero() {
 			  </p>
 			  <HeroButtons />
 			  <p className="font-mono text-[9px] tracking-[0.14em] uppercase text-muted-text/50">
-				Pilot Region · Delhi NCR
+				Pilot Region · Kerala
 			  </p>
 			</div>
 
